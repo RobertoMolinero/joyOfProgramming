@@ -1,0 +1,8 @@
+# Idea Property Files
+.idea/
+
+# OpenSSL Generated Files
+*.crt
+*.key
+*.csr
+*.pem
