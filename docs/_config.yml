@@ -18,12 +18,11 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Your awesome title
+title: The Joy of Programming
 email: your-email@example.com
+
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  This page is about Coding Dojos. Individual Coding Katas are presented and solved step by step. This should give the reader the opportunity to learn and practice programming.
 baseurl: "/joyOfProgramming"
 url: "https://robertomolinero.github.io/"
 
