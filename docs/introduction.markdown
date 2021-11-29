@@ -1,42 +1,42 @@
 ---
 layout: page
-title: Introduction
+title: Einführung
 permalink: /introduction/
 ---
 
-This page is about the topic Coding Dojo. Individual Coding Katas are presented and solved step by step. This should give the reader the opportunity to learn and practice programming.
+Auf dieser Seite geht es um das Thema Coding Dojo bzw. Coding Kata. 
 
-I try to keep the following points in mind:
+Ein Coding Dojo bezeichnet eine Art das Programmieren zu erlernen und zu üben. Eine einzelne Aufgabe, eine sogenannte Coding Kata, wird eingeübt. Es wird versucht Schritt für Schritt eine Lösung und dann eine bessere Lösung zu finden.
 
----
-Step by step.
+Sinn und Zweck ist dabei das Üben selbst. Die Lösung ist in den meisten Fällen nur ein Nebenprodukt.
 
-Depending on the task, it is necessary to split the task into several subtasks. According to the Roman principle "Divide and Conquer" you do not try to solve the whole task immediately. Instead, you solve the resulting subtasks.
+Folgende Prinzipien versuche ich dabei anzuwenden:
 
-The subtasks must be technically testable. It must be possible to determine by a written test whether the requirement is fulfilled. The size of the created packages should be chosen in a way that they can be completed within one day without any problems.
+### 1. Schritt für Schritt.
 
----
-Test-driven development.
+Je nach Aufgabe ist es notwendig, die Aufgabe in mehrere Teilaufgaben zu unterteilen. Nach dem römischen Prinzip "Teile und herrsche" versucht man nicht, die gesamte Aufgabe sofort zu lösen. Stattdessen löst man die entstehenden Teilaufgaben.
 
-* Translate requirement into a test
-* Run and fail the test
-* An initial implementation
+Die Teilaufgaben müssen technisch überprüfbar sein. Es muss durch einen schriftlichen Test festgestellt werden können, ob die Anforderung erfüllt ist. Die Größe der erstellten Pakete sollte so gewählt werden, dass sie ohne Probleme innerhalb eines Tages erledigt werden können.
+
+### 2. Testgetriebene Entwicklung
+
+* Übersetzen der Anforderungen in einen Test
+* Ausführen und Fehlschlagen des Tests
+* Eine erste Implementierung
 * Refactoring
-* All tests
-* Check documentation
+* Alle Tests
+* Dokumentation prüfen
 
----
-Move forward securely.
+### 3. Sicher voranschreiten
 
-A once made progress should not be lost again. That's why every step is followed by a commit with the help of Git.
+Ein einmal gemachter Fortschritt soll nicht wieder verloren gehen. Deshalb folgt auf jeden Schritt ein Sichern mit Hilfe eines Versionierungssystems. In meinem Fall ist das Git.
 
-I do not write this down extra. But the reader should do this by himself. This prevents lengthy searches and frustration.
+Ich schreibe das nicht extra auf. Aber der Leser sollte dies selbst tun. Das verhindert langes Suchen und Frustration.
 
----
-Documentation
+### 4. Dokumentation
 
-This part is the most annoying for most people. The problem is called forgetfulness. After a few months at the latest, no one knows what the code does anymore. And then changes become a gamble.
+Dieser Teil ist für die meisten Menschen am nervigsten. Das Problem heißt "Vergesslichkeit". Spätestens nach ein paar Monaten weiß niemand mehr, was der Code macht. Und dann werden Änderungen zu einem Glücksspiel.
 
-The documentation here should consist of several parts. The first part is the test. This should list all requirements as meaningful as possible and show with which parameters these requirements were tested.
+Die Dokumentation sollte hier aus mehreren Teilen bestehen. Der erste Teil ist der Test. Dieser sollte alle Anforderungen möglichst aussagekräftig auflisten und zeigen, mit welchen Parametern diese Anforderungen getestet wurden.
 
-The productive code is additionally provided with comments at all externally accessible places.
+Der produktive Code wird zusätzlich an allen von außen zugänglichen Stellen mit Kommentaren versehen.

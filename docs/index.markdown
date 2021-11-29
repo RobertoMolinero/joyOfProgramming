@@ -1,5 +1,5 @@
-Welcome to my blog!
+Willkommen in meinem Blog!
 
-On this blog, individual coding katas are collected and solved step by step. If you want more information, please have a look at the [introduction](/joyOfProgramming/introduction/) in the upper right corner.
+In diesem Blog werden einzelne Coding Katas gesammelt und Schritt für Schritt gelöst. Wenn Sie mehr Informationen wünschen, schauen Sie sich bitte die [Einführung](/joyOfProgramming/introduction/) in der oberen rechten Ecke an.
 
-Have fun with the available exercises and solutions.
+Viel Spaß mit den vorhandenen Übungen und Lösungen.
