@@ -22,7 +22,7 @@ title: The Joy of Programming
 email: your-email@example.com
 
 description: >- # this means to ignore newlines until "baseurl:"
-  Auf dieser Seite geht es um Coding Dojos. Es werden einzelne Coding Katas vorgestellt und Schritt für Schritt gelöst. Dies soll dem Leser die Möglichkeit geben, das Programmieren zu lernen und zu üben.
+  Auf dieser Seite geht es um das Übungsformat Coding Dojo. Es werden einzelne Coding Katas vorgestellt und Schritt für Schritt gelöst. Dies soll dem Leser die Möglichkeit geben, das Programmieren zu lernen und zu üben.
 baseurl: "/joyOfProgramming"
 url: "https://robertomolinero.github.io/"
 

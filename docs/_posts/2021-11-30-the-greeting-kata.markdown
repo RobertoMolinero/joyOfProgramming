@@ -2,8 +2,12 @@
 layout: post 
 title:  "The Greeting Kata"
 date:   2021-04-18 13:51:59 +0200 
-categories: jekyll update
+categories: string list kotlin kotest
 ---
+
+[My Solution on GitHub](https://github.com/RobertoMolinero/kataCollectionKotlinAndKotest/tree/main/src/main/kotlin/greeting)
+
+[My Tests on GutHub](https://github.com/RobertoMolinero/kataCollectionKotlinAndKotest/tree/main/src/test/kotlin/greeting)
 
 Diese Kata habe ich aus dem Github-Account
 von [Test Double](https://github.com/testdouble/contributing-tests/wiki/Greeting-Kata) entnommen.
