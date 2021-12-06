@@ -6,7 +6,7 @@ The result is a static blog generated with Jekyll.
 
 The address is:
 
-http://joyOfProgramming.github.io
+https://robertomolinero.github.io//joyOfProgramming/
 
 # Development
 
