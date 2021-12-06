@@ -1,13 +1,13 @@
 ---
-layout: post 
+layout: post
 title:  "TicTacToe"
-date:   2021-11-30 09:24:59 +0200 
+date:   2021-11-30 09:24:59 +0200
 categories: game java spock
 ---
 
 [My Solution on GitHub](https://github.com/RobertoMolinero/kataCollectionJavaAndSpock/tree/main/src/main/java/ticTacToe)
 
-[My Tests on GutHub](https://github.com/RobertoMolinero/kataCollectionJavaAndSpock/tree/main/src/test/groovy/ticTacToe)
+[My Tests on GitHub](https://github.com/RobertoMolinero/kataCollectionJavaAndSpock/tree/main/src/test/groovy/ticTacToe)
 
 Diese Kata ist gerade für Anfänger sehr interessant. Zum einen ist die Problemstellung übersichtlich und enthält nicht
 zu viele Komponenten auf ein mal. Sollte man während der Implementierung doch noch ein mal etwas ändern wollen ist dafür
@@ -17,7 +17,7 @@ Zum anderen ergibt sich am Ende ein sicht- bzw. spielbares Ergebnis das auch zu 
 
 Der entscheidende Punkt besteht darin einen Plan zu finden. Das heißt man zerlegt die Gesamtaufgabe in Aufgabenteile und
 ordnet diese Aufgabenteile anschliessend in einer Liste so an das man sie von oben nach unten abarbeiten kann. Das
-Ergebnis jeder Teilaufgabe muss funktionierender, testbarer Stand sein.
+Ergebnis jeder Teilaufgabe muss ein funktionierender, testbarer Stand sein.
 
 Meine Vorgehensweise besteht aus 3 Teilen. Ich lege die Datenstruktur fest und schreibe eine Methode die die Daten
 darstellt. Die Darstellung kann ich dann testen.
@@ -32,9 +32,9 @@ Als zweites schaffe ich die Methode zur Eingabe. Dabei behandel ich schrittweise
 alle möglichen Sonderfälle.
 
 + Eingabe der Züge
-  + Ein korrekter Zug wird eingetragen.
-  + Ein Zug mit fehlerhaften Koordinaten wird nicht eingetragen.
-  + Ein Zug auf einem bereits gesetzten Feld wird nicht eingetragen.
+    + Ein korrekter Zug wird eingetragen.
+    + Ein Zug mit fehlerhaften Koordinaten wird nicht eingetragen.
+    + Ein Zug auf einem bereits gesetzten Feld wird nicht eingetragen.
 
 Eine kleine Methode zum wechseln des aktiven Spielers schliesst den Eingabeteil ab.
 
@@ -44,15 +44,22 @@ Als letztes folgt eine Methode mit der nach jedem Zug geprüft wird ob das Spiel
 auch wieder jeden einzelnen Fall nacheinander ab.
 
 + Validierung der Züge
-  + Das Spielbrett wird auf vollständige Reihen untersucht.
-  + Das Spielbrett wird auf vollständige Spalten untersucht.
-  + Das Spielbrett wird auf vollständige Diagonalen untersucht.
-  + Ist das Spielbrett voll wird das Spiel unentschieden gewertet.
+    + Das Spielbrett wird auf vollständige Reihen untersucht.
+    + Das Spielbrett wird auf vollständige Spalten untersucht.
+    + Das Spielbrett wird auf vollständige Diagonalen untersucht.
+    + Ist das Spielbrett voll wird das Spiel unentschieden gewertet.
 
-Um das Spiel nun wirklich spielen zu können werde ich versuchen zwei Oberflächen zu schaffen. Eine text- und eine grafikbasierte.
+Um das Spiel nun wirklich spielen zu können werde ich versuchen zwei Oberflächen zu schaffen. Eine text- und eine
+grafikbasierte.
 
-+ Ein Spiel mit Konsole 
++ Ein Spiel mit Konsole
 + Ein Spiel mit einer GUI (Swing)
+
+Anmerkung: Bevor ich mit der Implementierung der einfachen Variante beginne möchte ich an dieser Stelle noch schnell ein Geständnis ablegen. Bei meinem ersten Versuch hatte sich ein Fehler eingeschlichen den ich bis zur abschliessenden Implementierung der Konsole nicht bemerkt habe. Ich hatte die ganze Zeit 'x' und 'y' im zweidimensionalen Array verdreht. Da ich es im Code und im Test genau gleich verdreht habe ist das nicht aufgefallen. Ich habe es natürlich gleich korrigiert, trotzdem wurmte mich diese Fehlerquelle weiterhin. Diese dämlichen primitiven Datentypen. Und deswegen habe ich eine weitere Version, ohne primitive Datentypen, neben die ursprüngliche Lösung gestellt. Der Zugriff ist ein wenig komplexer, aber ich finde den Code am Ende übersichtlicher und lesbarer. Aber urteilt gern selbst.
+
+[My Solution (Without Primitives) on GitHub](https://github.com/RobertoMolinero/kataCollectionJavaAndSpock/tree/main/src/main/java/ticTacToeWithoutPrimitives)
+
+[My Tests (Without Primitives) on GitHub](https://github.com/RobertoMolinero/kataCollectionJavaAndSpock/tree/main/src/test/groovy/ticTacToeWithoutPrimitives)
 
 **1. Die Datenstruktur und deren Darstellung**
 
@@ -150,11 +157,11 @@ Die Methode _getOutput()_ selbst lege ich in der Klasse _TicTacToe_ an.
 public class TicTacToe {
     public String getOutput() {
         final StringBuilder sb = new StringBuilder();
-        sb.append("Active Player: " + activePlayer.getName() + "\n");
+        sb.append("Active Player: ").append(activePlayer.getName()).append("\n");
 
-        for (char[] row : board.fields) {
-            for (char col : row) {
-                sb.append(col);
+        for (char[] y : board.getFields()) {
+            for (char x : y) {
+                sb.append(x);
             }
             sb.append("\n");
         }
@@ -164,7 +171,7 @@ public class TicTacToe {
 }
 ```
 
-Anmerkung: Ich hätte an dieser Stelle natürlich auch einfach die Methode _Object.toString()_ überschreiben können.
+Anmerkung: Ich hätte an dieser Stelle natürlich auch einfach die Methode _Object.toString()_ überschreiben können. Aber ich finde das nicht ganz korrekt. Die Methode _Object.toString()_ ist eine von Java gelieferte Methode für rein technische Zwecke. Fachliche Aufgaben wie eine bestimmte Darstellung auf einem Bildschirm möchte ich da nicht reinschreiben.
 
 **2.1. Eingabe der Züge: Ein korrekter Zug wird eingetragen.**
 
@@ -184,37 +191,37 @@ Der Testfall sieht nun wie folgt aus.
 
 ```groovy
 @Unroll
-def "Die valide Eingabe (x=#x, y=#y) für Spieler #player wird korrekt eingetragen."() {
+def "Die valide Eingabe (x=#x, y=#y) fuer Spieler #player wird korrekt eingetragen."() {
     given:
     TicTacToe sut = new TicTacToe()
     sut.activePlayer = player
-    sut.board.fields = fieldsInput
+    sut.board.fields = fieldsInput as char[][]
 
     when:
     sut.enterMove(x, y)
 
     then:
-    sut.board.fields == fieldsOutput
+    sut.board.fields == fieldsOutput as char[][]
 
     where:
     player                  | fieldsInput                                         | x | y || fieldsOutput
     ActivePlayer.PLAYER_ONE | [['o', 'o', 'o'], ['o', 'o', 'o'], ['o', 'o', 'o']] | 0 | 0 || [['x', 'o', 'o'], ['o', 'o', 'o'], ['o', 'o', 'o']]
     ActivePlayer.PLAYER_TWO | [['x', 'o', 'o'], ['o', 'o', 'o'], ['o', 'o', 'o']] | 1 | 1 || [['x', 'o', 'o'], ['o', '+', 'o'], ['o', 'o', 'o']]
-    ActivePlayer.PLAYER_ONE | [['x', 'o', 'o'], ['o', '+', 'o'], ['o', 'o', 'o']] | 0 | 2 || [['x', 'o', 'x'], ['o', '+', 'o'], ['o', 'o', 'o']]
-    ActivePlayer.PLAYER_TWO | [['x', 'o', 'x'], ['o', '+', 'o'], ['o', 'o', 'o']] | 2 | 0 || [['x', 'o', 'x'], ['o', '+', 'o'], ['+', 'o', 'o']]
-    ActivePlayer.PLAYER_ONE | [['x', 'o', 'x'], ['o', '+', 'o'], ['+', 'o', 'o']] | 2 | 2 || [['x', 'o', 'x'], ['o', '+', 'o'], ['+', 'o', 'x']]
+    ActivePlayer.PLAYER_ONE | [['x', 'o', 'o'], ['o', '+', 'o'], ['o', 'o', 'o']] | 0 | 2 || [['x', 'o', 'o'], ['o', '+', 'o'], ['x', 'o', 'o']]
+    ActivePlayer.PLAYER_TWO | [['x', 'o', 'o'], ['o', '+', 'o'], ['x', 'o', 'o']] | 2 | 0 || [['x', 'o', '+'], ['o', '+', 'o'], ['x', 'o', 'o']]
+    ActivePlayer.PLAYER_ONE | [['x', 'o', '+'], ['o', '+', 'o'], ['x', 'o', 'o']] | 2 | 2 || [['x', 'o', '+'], ['o', '+', 'o'], ['x', 'o', 'x']]
 }
 ```
 
-Ich konstruiere ein Spiel mit einer bestimmten Spielstellung und gebe an wer als nächstes einen Zug macht.
-Anschliessend rufe ich die neue Methode auf und teste ob alle Ergebnisse passen.
+Ich konstruiere ein Spiel mit einer bestimmten Spielstellung und gebe an wer als nächstes einen Zug macht. Anschliessend
+rufe ich die neue Methode auf und teste ob alle Ergebnisse passen.
 
 In der Klasse _Board_ trage ich eine einfache Methode zum setzen des Werts ein.
 
 ```java
 public class Board {
     public void setCell(ActivePlayer activePlayer, int x, int y) {
-        fields[x][y] = activePlayer.getPiece();
+        fields[y][x] = activePlayer.getPiece();
     }
 }
 ```
@@ -239,7 +246,7 @@ Diesen Fehlerfall stelle ich in einem Test nach.
 
 ```groovy
 @Unroll
-def "Die nicht valide Eingabe (x=#x, y=#y) für Spieler #player wird nicht eingetragen."() {
+def "Die nicht valide Eingabe (x=#x, y=#y) fuer Spieler #player wird nicht eingetragen."() {
     given:
     TicTacToe sut = new TicTacToe()
     sut.activePlayer = player
@@ -290,7 +297,6 @@ public class TicTacToe {
         if (board.isFieldCoordinateValid(x, y)) {
             board.setCell(activePlayer, x, y);
         }
-        switchActivePlayer();
     }
 }
 ```
@@ -302,22 +308,22 @@ natürlich nicht noch mal gewählt werden.
 
 ```groovy
 @Unroll
-def "Das bereits besetzte Feld (x=#x, y=#y) für Spieler #player wird nicht eingetragen."() {
+def "Das bereits besetzte Feld (x=#x, y=#y) fuer Spieler #player wird nicht eingetragen."() {
     given:
     TicTacToe sut = new TicTacToe()
     sut.activePlayer = player
-    sut.board.fields = fields
+    sut.board.fields = fields as char[][]
 
     when:
     sut.enterMove(x, y)
 
     then:
-    sut.board.fields == fields
+    sut.board.fields == fields as char[][]
 
     where:
     player                  | fields                                              | x | y
     ActivePlayer.PLAYER_ONE | [['o', 'o', 'o'], ['o', '+', 'o'], ['o', 'o', 'o']] | 1 | 1
-    ActivePlayer.PLAYER_TWO | [['+', 'x', 'o'], ['o', '+', 'x'], ['+', 'o', 'x']] | 2 | 0
+    ActivePlayer.PLAYER_TWO | [['+', 'x', '+'], ['o', '+', 'x'], ['x', 'o', 'x']] | 2 | 0
     ActivePlayer.PLAYER_TWO | [['+', 'x', 'o'], ['+', 'o', 'x'], ['o', '+', 'x']] | 1 | 2
 }
 ```
@@ -327,7 +333,7 @@ Wieder wird eine recht simple Methode in die Klasse _Board_ zum prüfen eingeset
 ```java
 public class Board {
     public boolean isCellEmpty(int x, int y) {
-        return fields[x][y] == EMPTY;
+        return fields[y][x] == EMPTY;
     }
 }
 ```
@@ -340,7 +346,6 @@ public class TicTacToe {
         if (board.isFieldCoordinateValid(x, y) && board.isCellEmpty(x, y)) {
             board.setCell(activePlayer, x, y);
         }
-        switchActivePlayer();
     }
 }
 ```
@@ -440,16 +445,13 @@ def "Der aktuelle Spielstand (Row) #fields mit aktuellen Spieler #player wird ko
 }
 ```
 
-Eine kleine Methode zum Testen der Reihe in der Klasse _Board_. In einer Schleife gehe ich die Reihen von 0 bis 2 durch und prüfe für den aktiven Spieler.
+Eine kleine Methode zum Testen der Reihe in der Klasse _Board_. In einer Schleife gehe ich die Reihen von 0 bis 2 durch
+und prüfe für den aktiven Spieler.
 
 ```java
 public class Board {
-    public boolean isRowComplete(ActivePlayer activePlayer) {
-        for (int i = 0; i < 3; i++) {
-            if (fields[i][0] == activePlayer.getPiece() && fields[i][1] == activePlayer.getPiece() && fields[i][2] == activePlayer.getPiece())
-                return true;
-        }
-        return false;
+    private boolean isRowComplete(ActivePlayer activePlayer, int y) {
+        return fields[0][y] == activePlayer.getPiece() && fields[1][y] == activePlayer.getPiece() && fields[2][y] == activePlayer.getPiece();
     }
 }
 ```
@@ -459,8 +461,8 @@ Und der Aufruf in unserer Methode.
 ```java
 public class TicTacToe {
     public GameState evaluateGame() {
-        if(board.isRowComplete(activePlayer)) {
-            if(ActivePlayer.PLAYER_ONE.equals(activePlayer)) {
+        if (board.isRowComplete(activePlayer)) {
+            if (ActivePlayer.PLAYER_ONE.equals(activePlayer)) {
                 return GameState.PLAYER_ONE_WIN;
             } else {
                 return GameState.PLAYER_TWO_WIN;
@@ -504,12 +506,8 @@ Die Methode ist fast identisch mit der letzten.
 
 ```java
 public class Board {
-    public boolean isColumnComplete(ActivePlayer activePlayer) {
-        for (int i = 0; i < 3; i++) {
-            if (fields[0][i] == activePlayer.getPiece() && fields[1][i] == activePlayer.getPiece() && fields[2][i] == activePlayer.getPiece())
-                return true;
-        }
-        return false;
+    private boolean isColumnComplete(ActivePlayer activePlayer, int x) {
+        return fields[x][0] == activePlayer.getPiece() && fields[x][1] == activePlayer.getPiece() && fields[x][2] == activePlayer.getPiece();
     }
 }
 ```
@@ -519,8 +517,8 @@ Und auch die Einbindung ist nur ein kleine Ergänzung.
 ```java
 public class TicTacToe {
     public GameState evaluateGame() {
-        if(board.isRowComplete(activePlayer) || board.isColumnComplete(activePlayer)) {
-            if(ActivePlayer.PLAYER_ONE.equals(activePlayer)) {
+        if (board.isRowComplete(activePlayer) || board.isColumnComplete(activePlayer)) {
+            if (ActivePlayer.PLAYER_ONE.equals(activePlayer)) {
                 return GameState.PLAYER_ONE_WIN;
             } else {
                 return GameState.PLAYER_TWO_WIN;
@@ -531,7 +529,8 @@ public class TicTacToe {
 }
 ```
 
-Hier würde ich jetzt noch ein kleines Refactoring einstreuen. Die beiden Prüfmethoden zur Vollständigkeit von Reihen und Spalten sind sich einfach zu ähnlich.
+Hier würde ich jetzt noch ein kleines Refactoring einstreuen. Die beiden Prüfmethoden zur Vollständigkeit von Reihen und
+Spalten sind sich einfach zu ähnlich.
 
 ```java
 public class Board {
@@ -540,24 +539,22 @@ public class Board {
             if (isRowComplete(activePlayer, i) || isColumnComplete(activePlayer, i))
                 return true;
         }
-        return false;
+
+        return isDiagonalComplete(activePlayer);
     }
 
-    private boolean isRowComplete(ActivePlayer activePlayer, int x) {
-        if (fields[x][0] == activePlayer.getPiece() && fields[x][1] == activePlayer.getPiece() && fields[x][2] == activePlayer.getPiece())
-            return true;
-        return false;
+    private boolean isRowComplete(ActivePlayer activePlayer, int y) {
+        return fields[0][y] == activePlayer.getPiece() && fields[1][y] == activePlayer.getPiece() && fields[2][y] == activePlayer.getPiece();
     }
 
-    private boolean isColumnComplete(ActivePlayer activePlayer, int y) {
-        if (fields[0][y] == activePlayer.getPiece() && fields[1][y] == activePlayer.getPiece() && fields[2][y] == activePlayer.getPiece())
-            return true;
-        return false;
-    }  
+    private boolean isColumnComplete(ActivePlayer activePlayer, int x) {
+        return fields[x][0] == activePlayer.getPiece() && fields[x][1] == activePlayer.getPiece() && fields[x][2] == activePlayer.getPiece();
+    }
 }
 ```
 
-Ich schalte eine Methode _isActivePlayerWinning()_ dazwischen und lagere die beiden for-Schleifen in diese Methode aus. Da die einzelnen Prüfmethoden nicht mehr direkt aufgerufen werden kann ich sie auf _private_ umstellen.
+Ich schalte eine Methode _isActivePlayerWinning()_ dazwischen und lagere die beiden for-Schleifen in diese Methode aus.
+Da die einzelnen Prüfmethoden nicht mehr direkt aufgerufen werden kann ich sie auf _private_ umstellen.
 
 **3.3. Validierung der Züge: Das Spielbrett wird auf vollständige Diagonalen untersucht.**
 
@@ -586,7 +583,8 @@ def "Der aktuelle Spielstand (Diagonal) #fields mit aktuellen Spieler #player wi
 }
 ```
 
-In der Klasse _Board_ wird noch ein dritte private Prüfmethode geschrieben und in die nach außen sichtbare Methode _isActivePlayerWinning()_ eingebaut.
+In der Klasse _Board_ wird noch ein dritte private Prüfmethode geschrieben und in die nach außen sichtbare Methode _
+isActivePlayerWinning()_ eingebaut.
 
 ```java
 public class Board {
@@ -596,10 +594,7 @@ public class Board {
                 return true;
         }
 
-        if (isDiagonalComplete(activePlayer))
-            return true;
-
-        return false;
+        return isDiagonalComplete(activePlayer);
     }
 
     private boolean isDiagonalComplete(ActivePlayer activePlayer) {
@@ -628,14 +623,15 @@ def "Der aktuelle Spielstand (Full) #board wird korrekt bewertet."() {
 }
 ```
 
-Die Methode zum testen ist recht simpel. Ich gehe einfach alle Felder durch und breche ab sobald ich ein leeres Feld finde. Finde ich im gesamten Durchlauf kein einziges leeres Feld ist das Spiel als 'Unentschieden' zu werten.
+Die Methode zum testen ist recht simpel. Ich gehe einfach alle Felder durch und breche ab sobald ich ein leeres Feld
+finde. Finde ich im gesamten Durchlauf kein einziges leeres Feld ist das Spiel als 'Unentschieden' zu werten.
 
 ```java
 public class Board {
     public boolean isBoardFull() {
-        for (char[] row : fields) {
-            for (char column : row) {
-                if (column == 'o') {
+        for (char[] y : fields) {
+            for (char x : y) {
+                if (x == 'o') {
                     return false;
                 }
             }
@@ -675,18 +671,18 @@ public class Console {
         t.switchActivePlayer();
 
         do {
-            int row, column;
+            int x, y;
 
             t.switchActivePlayer();
             System.out.println(t.getOutput());
 
             Scanner input = new Scanner(System.in);
-            System.out.print("row: ");
-            row = input.nextInt();
-            System.out.print("column: ");
-            column = input.nextInt();
+            System.out.print("x: ");
+            x = input.nextInt();
+            System.out.print("y: ");
+            y = input.nextInt();
 
-            t.enterMove(row, column);
+            t.enterMove(x, y);
         } while (t.evaluateGame() == GameState.UNDECIDED);
 
         System.out.println(t.getOutput());
@@ -697,8 +693,10 @@ public class Console {
 
 In einer Schleife wird so lange gespielt bis das Ergebnis nicht mehr 'Unentschieden' ist.
 
-Zuerst werden die Koordinaten entgegengenommen und eingtragen. Danach werden die Siegbedingungen geprüft und schließlich der Spieler gewechselt.
+Zuerst werden die Koordinaten entgegengenommen und eingtragen. Danach werden die Siegbedingungen geprüft und schließlich
+der Spieler gewechselt.
 
 **5. Ein Spiel mit einer GUI (Swing)**
 
-Ich habe auch noch eine kleine GUI mit Swing gebastelt. Die könnt ihr euch direkt in meinem Repository anschauen. Von der Programmsteuerung her ist sie nahezu identisch mit der Konsole.
+Ich habe auch noch eine kleine GUI mit Swing gebastelt. Die könnt ihr euch direkt in meinem Repository anschauen. Von
+der Programmsteuerung her ist sie nahezu identisch mit der Konsole.
