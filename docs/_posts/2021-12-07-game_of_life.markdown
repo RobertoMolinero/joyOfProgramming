@@ -642,4 +642,4 @@ public class Dialog extends JDialog {
 }
 ```
 
-![Ein Screenshot der 29. Generation](./img/gui_with_explosion_generation_29.png)
+![Ein Screenshot der 29. Generation](https://raw.githubusercontent.com/RobertoMolinero/joyOfProgramming/main/docs/_posts/img/gui_with_explosion_generation_29.png)
