@@ -2,12 +2,12 @@
 layout: post 
 title:  "The Greeting Kata"
 date:   2021-04-18 13:51:59 +0200 
-categories: string list kotlin kotest
+categories: kotlin kotest string list
 ---
 
 [My Solution on GitHub](https://github.com/RobertoMolinero/kataCollectionKotlinAndKotest/tree/main/src/main/kotlin/greeting)
 
-[My Tests on GutHub](https://github.com/RobertoMolinero/kataCollectionKotlinAndKotest/tree/main/src/test/kotlin/greeting)
+[My Tests on GitHub](https://github.com/RobertoMolinero/kataCollectionKotlinAndKotest/tree/main/src/test/kotlin/greeting)
 
 Diese Kata habe ich aus dem Github-Account
 von [Test Double](https://github.com/testdouble/contributing-tests/wiki/Greeting-Kata) entnommen.

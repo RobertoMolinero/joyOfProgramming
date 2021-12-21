@@ -2,7 +2,7 @@
 layout: post
 title:  "TicTacToe"
 date:   2021-11-30 09:24:59 +0200
-categories: game java spock
+categories: java spock game
 ---
 
 [My Solution on GitHub](https://github.com/RobertoMolinero/kataCollectionJavaAndSpock/tree/main/src/main/java/ticTacToe)
@@ -135,7 +135,7 @@ Doch wie testet man das Ganze jetzt? Meine Idee: Über die korrekte Ausgabe.
 Ich lege also eine Methode an die das ganze Objekt als Zeichenkette ausgibt. Der Test dazu sieht wie folgt aus:
 
 ```groovy
-def "Der initiale Zustand wird korrekt angezeigt."() {
+def "Der initiale Zustand wird korrekt angezeigt"() {
     given:
     Game sut = new Game()
 
@@ -191,7 +191,7 @@ Der Testfall sieht nun wie folgt aus.
 
 ```groovy
 @Unroll
-def "Die valide Eingabe (x=#x, y=#y) fuer Spieler #player wird korrekt eingetragen."() {
+def "Die valide Eingabe (x=#x, y=#y) fuer Spieler #player wird korrekt eingetragen"() {
     given:
     TicTacToe sut = new TicTacToe()
     sut.activePlayer = player
@@ -246,7 +246,7 @@ Diesen Fehlerfall stelle ich in einem Test nach.
 
 ```groovy
 @Unroll
-def "Die nicht valide Eingabe (x=#x, y=#y) fuer Spieler #player wird nicht eingetragen."() {
+def "Die nicht valide Eingabe (x=#x, y=#y) fuer Spieler #player wird nicht eingetragen"() {
     given:
     TicTacToe sut = new TicTacToe()
     sut.activePlayer = player
@@ -308,7 +308,7 @@ natürlich nicht noch mal gewählt werden.
 
 ```groovy
 @Unroll
-def "Das bereits besetzte Feld (x=#x, y=#y) fuer Spieler #player wird nicht eingetragen."() {
+def "Das bereits besetzte Feld (x=#x, y=#y) fuer Spieler #player wird nicht eingetragen"() {
     given:
     TicTacToe sut = new TicTacToe()
     sut.activePlayer = player
@@ -354,7 +354,7 @@ public class TicTacToe {
 
 ```groovy
 @Unroll
-def "Nach dem aktuellen Spieler #player ist als naechster Spieler #nextPlayer am Zug."() {
+def "Nach dem aktuellen Spieler #player ist als naechster Spieler #nextPlayer am Zug"() {
     given:
     TicTacToe sut = new TicTacToe()
     sut.activePlayer = player
@@ -422,7 +422,7 @@ Jetzt werten wir das Brett aus. Wir beginnen mit den Reihen.
 
 ```groovy
 @Unroll
-def "Der aktuelle Spielstand (Row) #fields mit aktuellen Spieler #player wird korrekt bewertet."() {
+def "Der aktuelle Spielstand (Row) #fields mit aktuellen Spieler #player wird korrekt bewertet"() {
     given:
     TicTacToe sut = new TicTacToe()
     sut.board.fields = fields
@@ -479,7 +479,7 @@ Für die Spalten passiert jetzt nicht viel anders.
 
 ```groovy
 @Unroll
-def "Der aktuelle Spielstand (Column) #fields mit aktuellen Spieler #player wird korrekt bewertet."() {
+def "Der aktuelle Spielstand (Column) #fields mit aktuellen Spieler #player wird korrekt bewertet"() {
     given:
     TicTacToe sut = new TicTacToe()
     sut.board.fields = fields
@@ -562,7 +562,7 @@ Zuerst der Test.
 
 ```groovy
 @Unroll
-def "Der aktuelle Spielstand (Diagonal) #fields mit aktuellen Spieler #player wird korrekt bewertet."() {
+def "Der aktuelle Spielstand (Diagonal) #fields mit aktuellen Spieler #player wird korrekt bewertet"() {
     given:
     TicTacToe sut = new TicTacToe()
     sut.board.fields = fields
@@ -610,7 +610,7 @@ Zum Schluss kommt der Test ob das Spiel wegen vollen Brett abgebrochen werden mu
 
 ```groovy
 @Unroll
-def "Der aktuelle Spielstand (Full) #board wird korrekt bewertet."() {
+def "Der aktuelle Spielstand (Full) #board wird korrekt bewertet"() {
     given:
     TicTacToe sut = new TicTacToe()
     sut.board.fields = [['+', 'x', '+'], ['+', 'x', '+'], ['x', '+', 'x']]
