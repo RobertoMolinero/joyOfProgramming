@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Game of Life"
-date:   2021-12-15 15:11:32 +0200
+date:   2021-12-07 15:11:32 +0200
 categories: java junit5 mathematics
 ---
 
