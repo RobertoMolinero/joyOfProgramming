@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Hello Brainfuck!"
-date:   2021-10-18 13:45:17 +0200
+date:   2023-04-01 16:02:00 +0200
 categories: java junit5 code languages
 ---
 
